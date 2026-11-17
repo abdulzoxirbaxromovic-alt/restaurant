@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dasturxon — restoran</title>
+<meta name="description" content="Dasturxon restorani: qozonda osh, choʻgʻda shashlik va milliy taomlar. Stolni onlayn band qiling.">
+<meta name="theme-color" content="#0E3B3A">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dasturxon — milliy taomlar restorani">
+<meta property="og:description" content="Qozonda osh, choʻgʻda shashlik. Stolni onlayn band qiling.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* 60% asosiy */ --main:#0E3B3A; --main-2:#154B49; --on-main:#F6F0E4; --on-main-soft:#B9CFC9;
+  /* 30% ikkinchi */ --second:#F6F0E4; --second-2:#EBE2D0; --on-second:#12302F; --on-second-soft:#4E625F;
+  /* 10% aksent */ --accent:#F4A62A; --on-accent:#2A1B00;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --line-main:rgba(246,240,228,.16); --line-second:rgba(18,48,47,.16);
+  box-sizing:border-box; color-scheme:light;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px)}
+body{margin:0;background:var(--main);color:var(--on-main);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--main);z-index:30}
+h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.1;margin:0;letter-spacing:-.01em}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 26px;border-radius:999px;font:700 16px var(--sans);text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .15s,background .15s}
+.btn:active{transform:scale(.97)}
+.btn-accent{background:var(--accent);color:var(--on-accent)}
+.btn-accent:hover{background:#FFB840}
+.btn-ghost{border-color:var(--line-main);color:var(--on-main)}
+.btn-ghost:hover{border-color:var(--on-main)}
+
+/* header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--main);border-bottom:1px solid var(--line-main)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font:700 24px var(--serif);text-decoration:none}
+nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0}
+nav a{text-decoration:none;font-weight:500;color:var(--on-main-soft)}
+nav a:hover{color:var(--on-main)}
+.nav .btn{min-height:42px;padding:0 20px;font-size:15px}
+@media(max-width:760px){nav{display:none}}
+
+/* hero (asosiy rang) */
+.hero{padding:64px 0 88px;overflow:hidden;background:radial-gradient(900px 480px at 85% 10%,rgba(244,166,42,.14),transparent 60%),var(--main)}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(40px,6.4vw,76px)}
+.hero .lead{margin-top:22px;max-width:30em;font-size:19px;color:var(--on-main-soft)}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.facts{display:flex;gap:34px;margin-top:44px;flex-wrap:wrap}
+.facts b{display:block;font:700 30px var(--serif)}
+.facts span{font-size:14px;color:var(--on-main-soft)}
+.stack{position:relative;min-height:540px}
+.card{position:absolute;background:var(--second);color:var(--on-second);border-radius:20px;padding:22px;box-shadow:0 24px 50px rgba(0,0,0,.28)}
+.card.dish{top:22px;left:0;width:62%;transform:rotate(-2deg)}
+.card.book{bottom:0;right:0;width:82%;transform:rotate(2deg);background:var(--main-2);color:var(--on-main);border:1px solid var(--line-main)}
+.card h3{font-size:22px}
+.card small{display:block;color:var(--on-second-soft);font-size:14px;margin-top:4px}
+.price{font:700 22px var(--serif);margin-top:14px}
+.tag{display:inline-block;margin-bottom:10px;padding:3px 12px;border-radius:999px;background:var(--accent);color:var(--on-accent);font-size:13px;font-weight:700}
+.book small{color:var(--on-main-soft)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{min-height:40px;padding:0 16px;border-radius:999px;border:1.5px solid var(--line-main);background:transparent;color:var(--on-main);font:700 15px var(--sans);cursor:pointer}
+.chip:hover{border-color:var(--accent)}
+@media(max-width:860px){
+  .hero{padding:40px 0 64px}
+  .hero-grid{grid-template-columns:1fr}
+  .stack{min-height:520px}
+}
+
+/* ikkinchi rang bo'limlari */
+.light{background:var(--second);color:var(--on-second)}
+.light .sub{color:var(--on-second-soft)}
+section{padding:88px 0}
+.head{max-width:34em;margin-bottom:44px}
+.head h2{font-size:clamp(30px,4.6vw,46px)}
+.head p{margin-top:14px;font-size:18px}
+.about{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line-second)}
+.about div{padding:28px 28px 0 0}
+.about div+div{padding-left:28px;border-left:1px solid var(--line-second)}
+.about h3{font-size:23px;margin-bottom:10px}
+@media(max-width:760px){
+  section{padding:64px 0}
+  .about{grid-template-columns:1fr}
+  .about div,.about div+div{padding:24px 0;border-left:0;border-bottom:1px solid var(--line-second)}
+}
+
+/* menyu (asosiy rang) */
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:30px}
+.tab{flex:none;min-height:44px;padding:0 22px;border-radius:999px;border:1.5px solid var(--line-main);background:transparent;color:var(--on-main);font:700 16px var(--sans);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--second);color:var(--on-second);border-color:var(--second)}
+.items{display:block}
+.item{padding:20px 0;border-bottom:1px solid var(--line-main)}
+.item-top{display:flex;justify-content:space-between;gap:16px;align-items:baseline}
+.item h3{font-size:21px}
+.item .p{font:700 19px var(--serif);color:var(--accent);white-space:nowrap}
+.item p{margin-top:6px;color:var(--on-main-soft);font-size:15.5px}
+@media(max-width:760px){.items{grid-template-columns:1fr}}
+
+/* bron (ikkinchi rang) */
+.booking{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+.info{margin-top:28px;display:grid;gap:18px}
+.info b{display:block;font:700 18px var(--serif)}
+.info a{text-decoration:none;border-bottom:1.5px solid var(--accent)}
+form{background:#fff;border:1px solid var(--line-second);border-radius:24px;padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.full{grid-column:1/-1}
+label{display:block;font-weight:700;font-size:15px;margin-bottom:6px}
+input,select,textarea{width:100%;min-height:50px;padding:12px 14px;border:1.5px solid #CFC6B3;border-radius:12px;background:var(--second);color:var(--on-second);font:500 16px var(--sans)}
+input:focus,select:focus,textarea:focus{outline:3px solid var(--accent);outline-offset:1px;border-color:var(--on-second)}
+textarea{min-height:84px;resize:vertical}
+.err{display:none;margin-top:5px;color:#A32A12;font-size:14px;font-weight:500}
+.bad .err{display:block}.bad input,.bad select{border-color:#A32A12}
+form .btn{width:100%;border:0}
+.note{font-size:14px;text-align:center;color:var(--on-second-soft)}
+@media(max-width:860px){.booking{grid-template-columns:1fr;gap:36px}}
+@media(max-width:480px){form{grid-template-columns:1fr;padding:22px}}
+
+/* izohlar */
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.review{background:var(--second-2);border-radius:18px;padding:26px}
+.review p{font-family:var(--serif);font-size:19px;line-height:1.45}
+.review span{display:block;margin-top:16px;font-size:14px;font-weight:700;color:var(--on-second-soft)}
+@media(max-width:860px){.reviews{grid-template-columns:1fr}}
+
+footer{background:var(--main);border-top:1px solid var(--line-main);padding:48px 0 40px}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px}
+.foot p{color:var(--on-main-soft);font-size:15px;max-width:22em;margin-top:8px}
+.foot a{display:block;text-decoration:none;color:var(--on-main-soft);padding:3px 0}
+.foot a:hover{color:var(--on-main)}
+.copy{margin-top:34px;font-size:14px;color:var(--on-main-soft)}
+
+.hero .intro{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+.hero .stack{animation:rise .9s .15s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+.photo{position:absolute;top:0;right:0;bottom:70px;left:12%;border-radius:28px;overflow:hidden;background:var(--main-2)}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.about-top{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-bottom:56px}
+.about-top .head{margin:0}
+.zal{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:center 55%;border-radius:24px;display:block}
+.menu-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:56px;align-items:start}
+.menu-photo{position:sticky;top:calc(env(safe-area-inset-top,0px) + 92px);border-radius:24px;overflow:hidden;aspect-ratio:3/4;background:var(--main-2)}
+.menu-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .25s}
+.done{background:var(--second);border-radius:14px;padding:16px}
+.done p{font-size:15px}
+.done .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.done .btn{flex:1;width:auto;border:2px solid transparent}
+.done .btn-line{border-color:var(--line-second);color:var(--on-second);background:transparent}
+@media(max-width:860px){
+  .about-top{grid-template-columns:1fr;gap:28px;margin-bottom:40px}
+  .menu-grid{grid-template-columns:1fr;gap:26px}
+  .menu-photo{position:static;aspect-ratio:16/10}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top">Dasturxon</a>
+    <nav aria-label="Asosiy menyu"><ul>
+      <li><a href="#haqida">Biz haqimizda</a></li>
+      <li><a href="#menyu">Menyu</a></li>
+      <li><a href="#izohlar">Mehmonlar fikri</a></li>
+      <li><a href="#bron">Aloqa</a></li>
+    </ul></nav>
+    <a class="btn btn-accent" href="#bron">Stol band qilish</a>
+  </div>
+</header>
+
+<main id="top">
+<div class="hero">
+  <div class="wrap hero-grid">
+    <div class="intro">
+      <h1>Qozonda pishgan taom, dasturxonda yigʻilgan oila.</h1>
+      <p class="lead">Har kuni ertalab yangi goʻsht va sabzavotdan, olovda va sabr bilan tayyorlanadigan milliy taomlar.</p>
+      <div class="cta">
+        <a class="btn btn-accent" href="#bron">Stol band qilish</a>
+        <a class="btn btn-ghost" href="#menyu">Menyuni koʻrish</a>
+      </div>
+      <div class="facts">
+        <div><b>4,9</b><span>mehmonlar bahosi</span></div>
+        <div><b>12 yil</b><span>bir joyda ishlaymiz</span></div>
+        <div><b>11:00–23:00</b><span>har kuni ochiqmiz</span></div>
+      </div>
+    </div>
+    <div class="stack" aria-label="Bugungi taklif va bandlik">
+      <div class="photo"><img data-img="osh" src="images/1794915121110.jpg" alt="Qozonda pishgan osh, yonida salat va non" width="768" height="1376" fetchpriority="high"></div>
+      <div class="card dish">
+        <span class="tag">Bugungi taklif</span>
+        <h3>Toʻy oshi</h3>
+        <small>Devzira guruchi, qoʻy goʻshti, sariq sabzi, nohat</small>
+        <div class="price">55 000 soʻm</div>
+      </div>
+      <div class="card book">
+        <h3>Mashhur vaqtlar</h3>
+        <small>Vaqtni tanlang, qolganini keyingi qadamda toʻldirasiz</small>
+        <div class="chips" id="chips"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="light" id="haqida">
+  <div class="wrap">
+    <div class="about-top">
+      <div class="head">
+        <h2>Oddiy taom emas, uyda yeganday taom.</h2>
+        <p class="sub">Biz tez tayyorlamaymiz. Taom oʻz vaqtida pishadi, shuning uchun mazasi shunday.</p>
+      </div>
+      <img class="zal" data-img="zal" src="images/1794915211522.jpg" alt="Restoran zali: firuza devorlar, gilamlar va yogʻoch stollar" width="768" height="1376" loading="lazy">
+    </div>
+    <div class="about">
+      <div><h3>Yangi mahsulot</h3><p class="sub">Goʻsht va sabzavot har kuni ertalab olinadi, kechga qolmaydi.</p></div>
+      <div><h3>Qozon va choʻgʻ</h3><p class="sub">Osh qozonda, kabob choʻgʻda tayyorlanadi. Gaz va tayyor yarim fabrikat yoʻq.</p></div>
+      <div><h3>Katta dasturxon</h3><p class="sub">Oilaviy tushlik, tugʻilgan kun va ish uchrashuvlari uchun alohida zal bor.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="menyu">
+  <div class="wrap">
+    <div class="head">
+      <h2>Menyu</h2>
+      <p style="color:var(--on-main-soft)">Narxlar soʻmda, bir kishilik porsiya uchun.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Menyu boʻlimlari" id="tabs"></div>
+    <div class="menu-grid">
+      <div class="menu-photo"><img id="mphoto" data-img="osh" src="images/1794915121110.jpg" alt="Qozonda pishgan osh" width="768" height="1376" loading="lazy"></div>
+      <div class="items" id="items" role="tabpanel"></div>
+    </div>
+  </div>
+</section>
+
+<section class="light" id="izohlar">
+  <div class="wrap">
+    <div class="head"><h2>Mehmonlarimiz nima deydi</h2></div>
+    <div class="reviews">
+      <div class="review"><p>Oshning guruchi sochilib turibdi, goʻshti yumshoq. Oilam bilan har juma kelamiz.</p><span>Dilshod, doimiy mehmon</span></div>
+      <div class="review"><p>Tugʻilgan kunni shu yerda oʻtkazdik. Xizmat tez, zal toza va keng.</p><span>Madina, 20 kishilik bron</span></div>
+      <div class="review"><p>Qozon kabobni boshqa joydan topolmadim. Narxi ham adolatli.</p><span>Sardor, ish tushligi</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="light" id="bron" style="padding-top:0">
+  <div class="wrap booking">
+    <div>
+      <h2 style="font-size:clamp(30px,4.6vw,46px)">Stol band qilish</h2>
+      <p class="sub" style="margin-top:14px;font-size:18px">Formani toʻldiring, maʼlumot Telegram orqali bizga yetib boradi. Biz bandlikni tasdiqlab javob beramiz.</p>
+      <div class="info">
+        <div><b>Manzil</b><span class="sub" id="addr"></span><br><a id="map" href="#" target="_blank" rel="noopener">Xaritada ochish</a></div>
+        <div><b>Telefon</b><a id="tel" href="#"></a></div>
+        <div><b>Ish vaqti</b><span class="sub">Har kuni 11:00 dan 23:00 gacha</span></div>
+      </div>
+    </div>
+    <form id="form" novalidate>
+      <div class="full"><label for="name">Ismingiz</label><input id="name" autocomplete="name" placeholder="Masalan, Aziz"><div class="err">Ismingizni yozing</div></div>
+      <div class="full"><label for="phone">Telefon raqamingiz</label><input id="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+998 90 123 45 67"><div class="err">Telefon raqamini toʻliq yozing</div></div>
+      <div><label for="date">Sana</label><input id="date" type="date"><div class="err">Sanani tanlang</div></div>
+      <div><label for="time">Vaqt</label><select id="time"></select></div>
+      <div class="full"><label for="guests">Mehmonlar soni</label><select id="guests"></select></div>
+      <div class="full"><label for="comment">Izoh (ixtiyoriy)</label><textarea id="comment" placeholder="Masalan, tugʻilgan kun, bolalar uchun stul"></textarea></div>
+      <div class="full"><button class="btn btn-accent" type="submit">Bandlikni yuborish</button></div>
+      <div class="full done" id="done" hidden><p><b>Deyarli tayyor.</b> Telegram ochilmasa, xabarni nusxalab yuboring yoki qoʻngʻiroq qiling.</p><div class="row"><button type="button" class="btn btn-line" id="copy">Xabarni nusxalash</button><a class="btn btn-accent" id="call" href="#">Qoʻngʻiroq qilish</a></div></div>
+      <p class="note full" id="note">Yuborgach Telegram ochiladi. Xabarni yuborish tugmasini bosing.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div><a class="logo" href="#top" style="color:var(--on-main)">Dasturxon</a><p>Milliy taomlar, qozon va choʻgʻda. Har kuni 11:00–23:00.</p></div>
+    <div><a href="#menyu">Menyu</a><a href="#izohlar">Mehmonlar fikri</a><a href="#bron">Stol band qilish</a></div>
+    <div><a id="tg" href="#" rel="noopener">Telegram</a><a id="ig" href="#" rel="noopener">Instagram</a><a id="tel2" href="#"></a></div>
+  </div>
+  <div class="wrap copy">© 2026 Dasturxon. Barcha huquqlar himoyalangan.</div>
+</footer>
+
+<script>
+/* ====== Shu yerni oʻzgartiring ====== */
+var CFG = {
+  name: "Dasturxon",
+  phone: "+998901234567",
+  phoneText: "+998 90 123 45 67",
+  telegram: "dasturxon_bron",   // Telegram username (@ belgisiz)
+  address: "Toshkent sh., Amir Temur koʻchasi, 15-uy",
+  instagram: "dasturxon_uz"   // Instagram username (@ belgisiz)
+};
+var MENU = {
+  "Asosiy taomlar":[
+    ["Toʻy oshi","Devzira guruchi, qoʻy goʻshti, sariq sabzi, nohat",55000],
+    ["Qozon kabob","Qozonda qovurilgan goʻsht va kartoshka",85000],
+    ["Lagʻmon","Qoʻlda tortilgan xamir, goʻsht, sabzavotli shoʻrva",38000],
+    ["Manti","Qoʻy goʻshti va piyozli, bugʻda pishgan, 5 dona",32000],
+    ["Dimlama","Goʻsht va mavsumiy sabzavotlar, oʻz suvida dimlangan",58000],
+    ["Mastava","Guruchli goʻshtli shoʻrva, qatiq bilan",30000]],
+  "Shashlik":[
+    ["Qoʻy goʻshtli shashlik","Choʻgʻda, piyoz bilan, 1 six",22000],
+    ["Qiymali shashlik","Qoʻy qiymasi va dumba, 1 six",18000],
+    ["Tovuq shashlik","Marinadlangan tovuq filesi, 1 six",16000],
+    ["Jigar kabob","Yangi jigar va dumba, 1 six",17000]],
+  "Salat va non":[
+    ["Achchiq-chuchuk","Pomidor, piyoz, achchiq qalampir",14000],
+    ["Toshkent salati","Rediska, bodring, goʻsht, smetana",36000],
+    ["Tandir non","Tandirdan yangi uzilgan",6000],
+    ["Somsa","Tandirda pishgan, goʻshtli, 1 dona",12000]],
+  "Ichimliklar":[
+    ["Koʻk choy","Choynak, 4–5 kishiga",12000],
+    ["Qora choy","Choynak, 4–5 kishiga",12000],
+    ["Uy kompoti","Quritilgan meva, 1 litr",20000],
+    ["Ayron","Sovuq, tuzli, 0,5 litr",9000]]
+};
+/* ===================================== */
+
+var IMG={osh:"images/1794915121110.jpg",shashlik:"images/1794915156986.jpg",zal:"images/1794915211522.jpg"};
+[].forEach.call(document.querySelectorAll("img[data-img]"),function(i){i.src=IMG[i.dataset.img];});
+var PH={"Asosiy taomlar":["osh","Qozonda pishgan osh"],"Shashlik":["shashlik","Choʻgʻda pishayotgan shashlik"],"Salat va non":["osh","Osh, salat va non"],"Ichimliklar":["zal","Restoran zali"]};
+function setPhoto(c){
+  var p=PH[c],im=$("mphoto");if(!p||im.dataset.img===p[0])return;
+  im.style.opacity=0;
+  setTimeout(function(){im.dataset.img=p[0];im.src=IMG[p[0]];im.alt=p[1];im.style.opacity=1;},220);
+}
+function fmt(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g," ")+" soʻm";}
+function $(id){return document.getElementById(id);}
+
+/* Menyu */
+var tabs=$("tabs"),items=$("items"),cats=Object.keys(MENU);
+function showCat(c){
+  [].forEach.call(tabs.children,function(b){b.setAttribute("aria-selected",b.dataset.c===c?"true":"false");});
+  setPhoto(c);
+  items.innerHTML=MENU[c].map(function(i){
+    return '<div class="item"><div class="item-top"><h3>'+i[0]+'</h3><span class="p">'+fmt(i[2])+'</span></div><p>'+i[1]+'</p></div>';
+  }).join("");
+}
+cats.forEach(function(c,k){
+  var b=document.createElement("button");
+  b.className="tab";b.type="button";b.textContent=c;b.dataset.c=c;b.setAttribute("role","tab");
+  b.onclick=function(){showCat(c);};tabs.appendChild(b);
+});
+showCat(cats[0]);
+
+/* Aloqa maʼlumotlari */
+$("addr").textContent=CFG.address;
+["tel","tel2"].forEach(function(id){var a=$(id);a.href="tel:"+CFG.phone;a.textContent=CFG.phoneText;});
+$("tg").href="https://t.me/"+CFG.telegram;
+$("ig").href="https://instagram.com/"+CFG.instagram;
+$("map").href="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(CFG.address);
+$("call").href="tel:"+CFG.phone;
+
+/* Forma maydonlari */
+var times=[];for(var h=11;h<=22;h++){times.push(h+":00");if(h<22)times.push(h+":30");}
+$("time").innerHTML=times.map(function(t){return '<option value="'+t+'">'+t+'</option>';}).join("");
+var g="";for(var n=1;n<=12;n++){g+='<option value="'+n+'">'+n+' kishi</option>';}
+g+='<option value="12+">12 kishidan koʻp</option>';$("guests").innerHTML=g;
+g="";$("guests").value="2";
+var today=new Date();
+function iso(d){var m=("0"+(d.getMonth()+1)).slice(-2),dd=("0"+d.getDate()).slice(-2);return d.getFullYear()+"-"+m+"-"+dd;}
+$("date").min=iso(today);$("date").value=iso(today);
+
+/* Hero'dagi vaqt tugmalari */
+var slots=["18:00","19:00","19:30","20:30"];
+$("chips").innerHTML=slots.map(function(t){return '<button type="button" class="chip" data-t="'+t+'">'+t+'</button>';}).join("");
+$("chips").addEventListener("click",function(e){
+  var t=e.target.getAttribute("data-t");if(!t)return;
+  $("time").value=t.replace(/^0/,"");
+  $("bron").scrollIntoView({behavior:"smooth"});
+  setTimeout(function(){$("name").focus({preventScroll:true});},500);
+});
+
+/* Yuborish */
+var lastMsg="";
+$("copy").addEventListener("click",function(){
+  var b=this,ok=function(){b.textContent="Nusxalandi";};
+  try{navigator.clipboard.writeText(lastMsg).then(ok,function(){window.prompt("Xabarni nusxalang:",lastMsg);});}
+  catch(e){window.prompt("Xabarni nusxalang:",lastMsg);}
+});
+function setBad(id,bad){$(id).closest("div").classList.toggle("bad",bad);}
+$("form").addEventListener("submit",function(e){
+  e.preventDefault();
+  var name=$("name").value.trim(),phone=$("phone").value.replace(/[^\d+]/g,""),date=$("date").value;
+  var okName=name.length>=2,okPhone=phone.replace(/\D/g,"").length>=9,okDate=!!date&&date>=iso(new Date());
+  setBad("name",!okName);setBad("phone",!okPhone);setBad("date",!okDate);
+  if(!(okName&&okPhone&&okDate)){var f=document.querySelector(".bad input");if(f)f.focus();return;}
+  var msg="Stol band qilish ("+CFG.name+")\n"+
+    "Ism: "+name+"\nTelefon: "+$("phone").value.trim()+"\nSana: "+date+"\nVaqt: "+$("time").value+
+    "\nMehmonlar: "+$("guests").value+(($("comment").value.trim())?"\nIzoh: "+$("comment").value.trim():"");
+  lastMsg=msg;$("done").hidden=false;
+  $("note").textContent="Telegram ochilmoqda. Xabarni yuborish tugmasini bosing.";
+  window.open("https://t.me/"+CFG.telegram+"?text="+encodeURIComponent(msg),"_blank","noopener");
+});
+</script>
+</body>
+</html>
